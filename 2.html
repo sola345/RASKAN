@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RASKAN MOTORS - Premium Bus Motors and Parts</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Custom subtle animation for cards */
+        .card-animation {
+            transition: all 0.3s ease-in-out;
+        }
+        .card-animation:hover {
+            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.2), 0 4px 6px -2px rgba(30, 58, 138, 0.1);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'raskan-blue': '#1e3a8a', // Deep corporate blue
+                        'raskan-red': '#dc2626', // Accent red for power
+                        'raskan-light': '#f0f4ff', // Light background for contrast
+                    }
+                }
+            }
+        }
+
+        // --- Core Application Logic ---
+
+        // Simple JavaScript for mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Function to show the custom modal message
+        function showMessageModal(title, message) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            document.getElementById('success-modal').classList.remove('hidden');
+            document.getElementById('success-modal').classList.add('flex');
+            // Hide after 5 seconds
+            setTimeout(hideMessageModal, 5000); 
+        }
+
+        // Function to hide the custom modal message
+        function hideMessageModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            document.getElementById('success-modal').classList.remove('flex');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Handle Contact Form Submission
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // In a real application, you would send the form data to a server here.
+                console.log('Form submitted successfully (dummy action).');
+                
+                // Show success modal
+                showMessageModal(
+                    "Inquiry Sent Successfully!",
+                    "Thank you for contacting RASKAN MOTORS. We have received your inquiry and will be in touch shortly."
+                );
+
+                // Reset the form after showing the message
+                this.reset();
+            });
+
+            // Dummy Search Functionality
+            document.getElementById('product-search').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = document.getElementById('search-input').value;
+                if (query.trim()) {
+                    showMessageModal(
+                        "Search Feature Active",
+                        `You searched for: "${query}". In a fully functional site, we would display your search results here.`
+                    );
+                }
+                // Don't reset the input field so the user can see what they searched for
+            });
+        });
+    </script>
+</head>
+<body class="bg-raskan-light text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-2">
+                    <svg class="h-8 w-8 text-raskan-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.01 12.01 0 002.944 12c.045 2.585.578 5.122 1.574 7.502L20.808 3.634z" />
+                    </svg>
+                    <span class="text-xl font-extrabold text-raskan-blue tracking-tight">RASKAN MOTORS</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#products" class="text-gray-600 hover:text-raskan-red transition duration-300 font-medium">Product Catalog</a>
+                    <a href="#services" class="text-gray-600 hover:text-raskan-red transition duration-300 font-medium">Services</a>
+                    <a href="#location" class="text-gray-600 hover:text-raskan-red transition duration-300 font-medium">Location</a>
+                    <a href="#contact" class="text-gray-600 hover:text-raskan-red transition duration-300 font-medium">Contact Us</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button type="button" onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-raskan-blue">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#products" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-raskan-blue hover:text-white transition duration-300">Product Catalog</a>
+                <a href="#services" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-raskan-blue hover:text-white transition duration-300">Services</a>
+                <a href="#location" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-raskan-blue hover:text-white transition duration-300">Location</a>
+                <a href="#contact" onclick="toggleMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-raskan-blue hover:text-white transition duration-300">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="bg-raskan-blue text-white py-20 sm:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-4">
+                    The Engine of Global Transit
+                </h1>
+                <p class="text-xl sm:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                    RASKAN MOTORS delivers superior quality bus motors and certified components, engineered for maximum uptime and efficiency in fleet operations.
+                </p>
+                <a href="#products" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-raskan-red hover:bg-red-700 transition duration-300 shadow-xl transform hover:scale-105">
+                    View Complete Catalog
+                </a>
+            </div>
+        </section>
+
+        <!-- Product Catalog Section (Enhanced) -->
+        <section id="products" class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-extrabold text-raskan-blue sm:text-5xl">Our Product Catalog</h2>
+                    <p class="mt-4 text-xl text-gray-500">A selection of our top-selling motors and critical replacement parts.</p>
+                </div>
+
+                <!-- Search Bar (Dummy Functionality) -->
+                <form id="product-search" class="max-w-xl mx-auto mb-12">
+                    <div class="flex rounded-lg shadow-md border border-gray-200">
+                        <input type="text" id="search-input" placeholder="Search by Model Name, Part Number, or Category..." class="flex-grow p-4 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-raskan-red transition duration-300" required>
+                        <button type="submit" class="bg-raskan-red text-white px-6 rounded-r-lg hover:bg-red-700 transition duration-300 flex items-center">
+                            <svg class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                            Search
+                        </button>
+                    </div>
+                </form>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    
+                    <!-- Product Example 1: HD-Series Engine -->
+                    <div class="bg-raskan-light p-8 rounded-xl shadow-lg card-animation">
+                        <div class="text-4xl mb-4 text-raskan-blue">⚙️</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">RASKAN HD-12.0L Diesel</h3>
+                        <p class="text-raskan-red font-semibold mb-4">Motor/Engine Assembly</p>
+                        <p class="text-gray-700 mb-4 text-sm">A heavy-duty, 6-cylinder diesel engine engineered for high torque and durability in continuous urban and intercity bus service. Fully compliant with Euro VI emission standards.</p>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li><span class="font-medium">Model Code:</span> HD-12L-VI</li>
+                            <li><span class="font-medium">Power Output:</span> 350-400 HP</li>
+                            <li><span class="font-medium">Warranty:</span> 3 Years / 300,000 km</li>
+                        </ul>
+                        <button class="mt-5 w-full py-2 bg-raskan-blue text-white rounded-lg hover:bg-raskan-red transition duration-300">
+                            Request Quote
+                        </button>
+                    </div>
+
+                    <!-- Product Example 2: OEM Turbocharger -->
+                    <div class="bg-raskan-light p-8 rounded-xl shadow-lg card-animation">
+                        <div class="text-4xl mb-4 text-raskan-blue">💨</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">OEM Turbocharger Assembly</h3>
+                        <p class="text-raskan-red font-semibold mb-4">Critical Engine Part</p>
+                        <p class="text-gray-700 mb-4 text-sm">Genuine replacement turbocharger designed for optimal air compression and fuel efficiency. Reduces lag and maximizes engine performance under load. Includes installation kit.</p>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li><span class="font-medium">Part Number:</span> TC-HD12-001</li>
+                            <li><span class="font-medium">Compatibility:</span> RASKAN HD-Series</li>
+                            <li><span class="font-medium">Certification:</span> ISO 9001 Certified</li>
+                        </ul>
+                        <button class="mt-5 w-full py-2 bg-raskan-blue text-white rounded-lg hover:bg-raskan-red transition duration-300">
+                            Check Availability
+                        </button>
+                    </div>
+
+                    <!-- Product Example 3: Brake System Kit -->
+                    <div class="bg-raskan-light p-8 rounded-xl shadow-lg card-animation">
+                        <div class="text-4xl mb-4 text-raskan-blue">🛑</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Complete Air Brake Kit</h3>
+                        <p class="text-raskan-red font-semibold mb-4">Safety & Chassis Part</p>
+                        <p class="text-gray-700 mb-4 text-sm">Full replacement kit for pneumatic braking systems, including air dryer cartridges, brake chambers, and slack adjusters. Ensures maximum stopping power and safety.</p>
+                        <ul class="space-y-1 text-sm text-gray-600">
+                            <li><span class="font-medium">Kit SKU:</span> BSK-TRANS-05</li>
+                            <li><span class="font-medium">Weight:</span> Approx. 25 kg</li>
+                            <li><span class="font-medium">Usage:</span> General Transit Bus Models</li>
+                        </ul>
+                        <button class="mt-5 w-full py-2 bg-raskan-blue text-white rounded-lg hover:bg-raskan-red transition duration-300">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section (Existing) -->
+        <section id="services" class="py-16 sm:py-24 bg-raskan-blue text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-extrabold sm:text-5xl">Engine Expertise & Support</h2>
+                    <p class="mt-4 text-xl text-gray-300">Beyond parts, we provide the technical knowledge you need.</p>
+                </div>
+                
+                <div class="flex flex-wrap -mx-4">
+                    <!-- Service 1: Technical Consultation -->
+                    <div class="w-full lg:w-1/3 p-4">
+                        <div class="bg-white text-gray-800 p-6 rounded-xl shadow-xl h-full">
+                            <h3 class="text-2xl font-bold mb-3 text-raskan-red flex items-center">
+                                <span class="mr-2">🔧</span> Technical Consultation
+                            </h3>
+                            <p class="text-gray-700">Expert advice on engine selection, fault diagnosis, and maintenance schedules tailored to maximize your fleet's uptime.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 2: Bulk Ordering & Logistics -->
+                    <div class="w-full lg:w-1/3 p-4">
+                        <div class="bg-white text-gray-800 p-6 rounded-xl shadow-xl h-full">
+                            <h3 class="text-2xl font-bold mb-3 text-raskan-red flex items-center">
+                                <span class="mr-2">📦</span> Bulk Ordering & Logistics
+                            </h3>
+                            <p class="text-gray-700">Streamlined supply chain and logistics management for large orders, ensuring timely and reliable delivery worldwide.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 3: Warranty & Support -->
+                    <div class="w-full lg:w-1/3 p-4">
+                        <div class="bg-white text-gray-800 p-6 rounded-xl shadow-xl h-full">
+                            <h3 class="text-2xl font-bold mb-3 text-raskan-red flex items-center">
+                                <span class="mr-2">🛡️</span> Warranty & Support
+                            </h3>
+                            <p class="text-gray-700">Comprehensive warranty coverage on all motors and parts, backed by dedicated after-sales support and easy returns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location and Contact Section -->
+        <section id="location" class="py-16 sm:py-24 bg-raskan-light">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-extrabold text-raskan-blue sm:text-5xl">Locate RASKAN MOTORS</h2>
+                    <p class="mt-4 text-xl text-gray-500">Find our main office and parts warehouse below.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div id="contact">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
+                        <form id="contact-form" action="#" method="POST" class="space-y-4 bg-white p-8 rounded-xl shadow-2xl">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-raskan-blue focus:ring-raskan-blue p-3 border">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Work Email</label>
+                                <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-raskan-blue focus:ring-raskan-blue p-3 border">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700">Your Inquiry</label>
+                                <textarea id="message" name="message" rows="4" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-raskan-blue focus:ring-raskan-blue p-3 border"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3 px-4 border border-transparent rounded-lg shadow-md text-lg font-medium text-white bg-raskan-red hover:bg-red-700 transition duration-300 transform hover:scale-[1.01]">
+                                Submit Inquiry
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Location Details & Map Placeholder -->
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">Our Main Warehouse</h3>
+                        <div class="bg-white p-8 rounded-xl shadow-2xl space-y-6">
+                            <!-- Address -->
+                            <div>
+                                <h4 class="text-xl font-semibold text-raskan-blue">Headquarters Address</h4>
+                                <p class="mt-2 text-gray-700">
+                                    RASKAN MOTORS Distribution Center<br>
+                                    1501 Industrial Parkway, Suite 300<br>
+                                    Metropolis, State 12345<br>
+                                    Country
+                                </p>
+                            </div>
+
+                            <!-- Contact Info -->
+                            <div>
+                                <h4 class="text-xl font-semibold text-raskan-blue">Contact Information</h4>
+                                <p class="mt-2 text-gray-700">
+                                    Phone: <a href="tel:+15551234567" class="text-raskan-red hover:underline">+1 (555) 123-4567</a><br>
+                                    Email: <a href="mailto:sales@raskanmotors.com" class="text-raskan-red hover:underline">sales@raskanmotors.com</a>
+                                </p>
+                            </div>
+
+                            <!-- Map Placeholder -->
+                            <div>
+                                <h4 class="text-xl font-semibold text-raskan-blue mb-3">Our Location - Directions</h4>
+                                <div class="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center border-4 border-gray-300 shadow-inner text-gray-500 overflow-hidden">
+                                    <!-- A real map iframe would go here with coordinates or embedded link -->
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1532.7431711200388!2d-74.0060!3d40.7128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjMiTiA3NMKwMDAnMzYuMCJX!5e0!3m2!1sen!2sus!4v1678886400000!5m2!1sen!2sus" 
+                                        width="100%" 
+                                        height="100%" 
+                                        style="border:0;" 
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        title="RASKAN MOTORS Location Map"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                    </iframe>
+                                    <p class="hidden p-4 text-center">Map iframe failed to load. Please use the address above for GPS navigation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-700 pb-4 mb-4">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-2xl font-bold tracking-tight text-white">RASKAN MOTORS</span>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#products" class="text-gray-400 hover:text-raskan-red transition duration-300">Catalog</a>
+                    <a href="#services" class="text-gray-400 hover:text-raskan-red transition duration-300">Support</a>
+                    <a href="#location" class="text-gray-400 hover:text-raskan-red transition duration-300">Find Us</a>
+                </div>
+            </div>
+            <p class="text-center text-gray-500 text-sm">
+                &copy; 2025 RASKAN MOTORS. All rights reserved. Powering reliable transit.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Custom Success Modal (Hidden by default) -->
+    <div id="success-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full z-50 justify-center items-center">
+        <div class="relative bg-white rounded-xl shadow-2xl p-6 w-11/12 max-w-md transform transition-all">
+            <div class="text-center">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                    <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </div>
+                <h3 id="modal-title" class="text-lg leading-6 font-medium text-gray-900">Success!</h3>
+                <div class="mt-2">
+                    <p id="modal-message" class="text-sm text-gray-500">
+                        Your operation was completed successfully.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <button type="button" onclick="hideMessageModal()" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-raskan-red text-base font-medium text-white hover:bg-red-700 sm:text-sm">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
